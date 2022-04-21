@@ -6,6 +6,7 @@ sumaCuadradosR 0 = 0
 sumaCuadradosR n = n ^2 + sumaCuadradosR (n-1)
 
 
+sumarCuadradosC :: (Num a, Enum a) => a -> a
 sumarCuadradosC n = sum [x ^2 | x <- [1..n]]
 
 
@@ -14,7 +15,6 @@ numeroBloquesR 0 = 0
 numeroBloquesR n = 2*n + numeroBloquesR (n-1)
 
 
--- escalera2 []  = []
 escalera2 :: Int -> [Int]
 escalera2 0 = [0]
 escalera2 n   = 1 : escalera2 (n-1)
@@ -43,7 +43,6 @@ sumaCuadradosImparesRC' n = sum [x ^ 2 | x <- [1,3..n]]
 
 
 digitosR :: Integer -> [Integer]
--- digitosR 0 = []
 digitosR n 
     | n == 0 = []
     | -1 /= n = [converNumer (show (head (show n)))] ++  digitosR (converNumer (tail (show n)))
@@ -53,10 +52,13 @@ digitosR n
 
 digitosRr :: Integer -> [Integer]
 digitosRr n = reverse (digitosR' n)
+
+digitosR' :: Integral t => t -> [t]
 digitosR' n
     | n < 10 = [n]
     | otherwise = (n `rem` 10) : digitosR' (n `div` 10)
 
+numeroTexto :: String -> Integer
 numeroTexto a = 
     converNumero a
     where 
@@ -140,6 +142,7 @@ capicua n
     | n == inverso n = True
     | otherwise = False
 
+capicua' :: Integer -> Bool
 capicua' n = n == inverso n 
 
 
@@ -150,6 +153,7 @@ primitivo n
     | otherwise =  primitivo (multiplicarItemLista (digitosRr n))
 
 
+multiplicarItemLista :: Num p => [p] -> p
 multiplicarItemLista [] = 1
 multiplicarItemLista (x:xs) =  x * multiplicarItemLista xs
 
@@ -159,7 +163,7 @@ primitivo' n
     |otherwise =  primitivo' (product (digitosRr (n)))
 
 
--- equivalentes :: Int -> Int -> Bool
+equivalentes :: (Integral a1, Integral a2) => a2 -> a1 -> Bool
 equivalentes a b =
     y == x
     where
@@ -247,12 +251,15 @@ sumaPositivosR (x:xs)
 
 
 
+aproximaPiC :: (Floating a, Enum a) => a -> a
 aproximaPiC n = sqrt (6 * (sum [ 1 /  (x ^ 2) | x <- [1..n]  ]))
 
 
+aproximaPiR :: (Eq p, Floating p) => p -> p
 aproximaPiR 0 = 1
 aproximaPiR n = sqrt (6* aproximaPiR' n )
 
+aproximaPiR' :: (Fractional p, Eq p) => p -> p
 aproximaPiR' 0 = 1
 aproximaPiR' n = 1 / n ^ 2  +  aproximaPiR' (n - 1)
 
