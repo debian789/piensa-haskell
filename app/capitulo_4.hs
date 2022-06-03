@@ -4,11 +4,12 @@ import Data.List
 sumaCuadradosR :: Integer -> Integer
 sumaCuadradosR 0 = 0
 sumaCuadradosR n = n ^2 + sumaCuadradosR (n-1)
+-- R: sumaCuadradosR 4                    30 
 
 
 sumarCuadradosC :: (Num a, Enum a) => a -> a
 sumarCuadradosC n = sum [x ^2 | x <- [1..n]]
-
+-- R: sumarCuadradosC 5                   55
 
 numeroBloquesR :: Integer -> Integer
 numeroBloquesR 0 = 0

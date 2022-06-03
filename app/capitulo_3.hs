@@ -8,6 +8,7 @@ potencia _ 0 = 1
 potencia x a =  x * potencia x (a - 1)
 -- R: potencia 2 4                       16 
 
+
 -- 3.2. Replicación de un elemento
 replicate' :: Int -> a -> [a]
 replicate' 0 _ = []
@@ -21,16 +22,19 @@ dobleFactorial 1 = 1
 dobleFactorial n = n * dobleFactorial (n -2)
 -- R: dobleFactorial 5                   15 
 
+
 -- 3.4. Algoritmo de Euclides del máximo común divisor
 mcd a 0 = a  
 mcd a b = mcd b ( mod a b )
 -- R: mcd 6 12                           6 
+
 
 -- 3.5. Menor número divisible por una sucesión de números
 menorDivisible a b 
     | a == b  = a 
     | otherwise = lcm a (menorDivisible (a+1) b)
 -- R: menorDivisible 10 12                660 
+
 
 -- 3.8. Pertenencia a una lista
 elem' :: Eq a => a -> [a] -> Bool
@@ -40,11 +44,13 @@ elem' a (x:xs)
     | otherwise = True
 -- R: elem' 2 [23,4,2]                    True 
 
+
 -- 3.9. Último elemento de una lista
 last' :: [a] -> a
 last' [a] =  a
 last' (x:xs) = last' (xs)
 -- R: last' [2,3,4]                        4
+
 
 -- 3.10. Concatenación de una lista
 concat' :: [[a]] -> [a]
@@ -52,11 +58,13 @@ concat' [] = []
 concat' (x:xs) =  x ++ concat' xs
 -- R: concat' [[1],[3,4,5]]                [1,3,4,5] 
 
+
 -- 3.11. Selección de un elemento
 selecciona :: [a] -> Int -> a
 selecciona  (x:xs) 0 = x
 selecciona (x:xs) a = selecciona xs (a-1) 
 -- R: selecciona [1,2,3,4] 2                3
+
 
 -- 3.12. Selección de los primeros elementos
 take' :: Int -> [a] -> [a]
@@ -72,6 +80,7 @@ refinada (x:y:zs) = x : (x+y) / 2 : refinada (y:zs)
 refinada xs = xs 
 -- R: refinada [1,2,3,4]                     [1.0,1.5,2.0,2.5,3.0,3.5,4.0] 
 
+
 -- 3.14. Ordenación por mezcla
 mezcla :: Ord a => [a] -> [a] -> [a]
 mezcla [] ys = ys
@@ -80,6 +89,7 @@ mezcla (x:xs) (y:ys)
     | x <= y    = x : mezcla xs (y:ys)
     | otherwise = y : mezcla (x:xs) ys 
 -- R:  mezcla [1,2,3] [4,5,6]                 [1,2,3,4,5,6] 
+
 
 -- 3.14. Ordenación por mezcla
 mezcla2 [a] = [a]
@@ -98,10 +108,12 @@ mitades xs =
         leng = div (length xs) 2
 -- R: mitades [1,2,3,4,5]                       ([1,2],[3,4,5])
 
+
 -- 3.14.2. Mitades de una lista
 mitades' :: [a] -> ([a],[a])
 mitades' xs = splitAt (length xs `div` 2) xs 
 -- R: mitades' [0,1,2,3,4,5]                    ([0,1,2],[3,4,5]) 
+
 
 -- 3.14.3. Ordenación por mezcla
 ordMezcla :: Ord a => [a] -> [a]
@@ -112,6 +124,7 @@ ordMezcla xs =
     where 
         (ys, zs) = mitades xs 
 -- R: ordMezcla  [5,2,1,3,4]                     [1,2,3,4,5] 
+
 
 -- 3.14.4. La ordenación por mezcla da listas ordenadas
 ordenada :: Ord a => [a] -> Bool
